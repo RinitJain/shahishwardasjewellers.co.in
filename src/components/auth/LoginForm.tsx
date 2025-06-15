@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -90,8 +91,8 @@ export function LoginForm() {
               <Checkbox id="remember-me" />
               <Label htmlFor="remember-me" className="text-sm font-normal">Remember me</Label>
             </div> */}
-            <Link href="/forgot-password" passHref legacyBehavior>
-              <a className="text-sm text-primary hover:underline">Forgot password?</a>
+            <Link href="/forgot-password" className="text-sm text-primary hover:underline">
+              Forgot password?
             </Link>
           </div>
           <Button type="submit" className="w-full bg-primary hover:bg-primary/90" disabled={isLoading}>
