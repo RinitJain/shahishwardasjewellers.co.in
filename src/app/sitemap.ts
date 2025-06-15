@@ -1,0 +1,48 @@
+import { MetadataRoute } from 'next'
+import { categories, products } from '@/lib/data' // Assuming data.ts exports these
+
+const BASE_URL = 'https://www.shahjewellers.com'; // Replace with actual domain
+ 
+export default function sitemap(): MetadataRoute.Sitemap {
+  const staticPages: MetadataRoute.Sitemap = [
+    {
+      url: BASE_URL,
+      lastModified: new Date(),
+      changeFrequency: 'yearly',
+      priority: 1,
+    },
+    {
+      url: `${BASE_URL}/categories`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+     {
+      url: `${BASE_URL}/wishlist`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
+    // Add other static pages like about, contact etc.
+  ];
+
+  const categoryPages: MetadataRoute.Sitemap = categories.map((category) => ({
+    url: `${BASE_URL}/categories/${category.slug}`,
+    lastModified: new Date(), // Or a more specific date if available
+    changeFrequency: 'weekly',
+    priority: 0.7,
+  }));
+
+  const productPages: MetadataRoute.Sitemap = products.map((product) => ({
+    url: `${BASE_URL}/products/${product.slug}`,
+    lastModified: new Date(), // Or a more specific date if available
+    changeFrequency: 'monthly',
+    priority: 0.9,
+  }));
+ 
+  return [
+    ...staticPages,
+    ...categoryPages,
+    ...productPages,
+  ];
+}
