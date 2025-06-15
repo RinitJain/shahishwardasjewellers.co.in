@@ -1,16 +1,11 @@
-import { Header } from '@/components/layout/Header';
-import { Footer } from '@/components/layout/Footer';
+// The main Header and Footer are now conditionally rendered by RootLayout.
+// This layout can be kept for (main) group specific logic if any,
+// or simplified if its only purpose was adding Header/Footer.
 
 export default function MainLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  return (
-    <div className="flex min-h-screen flex-col">
-      <Header />
-      <main className="flex-grow">{children}</main>
-      <Footer />
-    </div>
-  );
+  return <>{children}</>;
 }
