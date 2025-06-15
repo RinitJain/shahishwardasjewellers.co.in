@@ -2,7 +2,7 @@
 import { Metadata } from 'next';
 import { InventoryTable } from '@/components/admin/InventoryTable';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { IndianRupee, ShoppingBag, Users, Activity } from 'lucide-react'; // Changed DollarSign to IndianRupee
+import { IndianRupee, ShoppingBag, Users, Activity } from 'lucide-react';
 
 export const metadata: Metadata = {
   title: 'Admin Dashboard | Shah Ishwardas Jewellers',
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 
 // Dummy data for stats
 const stats = [
-  { title: "Total Revenue", value: "₹125,670", icon: IndianRupee, change: "+12.5%" }, // Changed $ to ₹ and icon
+  { title: "Total Revenue", value: "Rs.125,670", icon: IndianRupee, change: "+12.5%" },
   { title: "Total Orders", value: "1,450", icon: ShoppingBag, change: "+5.2%" },
   { title: "Active Users", value: "875", icon: Users, change: "+2.1%" },
   { title: "Site Activity", value: "High", icon: Activity, change: "Last 24h" },

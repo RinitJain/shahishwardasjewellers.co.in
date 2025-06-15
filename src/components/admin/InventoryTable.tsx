@@ -56,7 +56,7 @@ export function InventoryTable() {
               </TableCell>
               <TableCell className="font-medium">{product.name}</TableCell>
               <TableCell className="capitalize">{product.category.replace('-', ' ')}</TableCell>
-              <TableCell className="text-right">₹{product.price.toFixed(2)}</TableCell>
+              <TableCell className="text-right">Rs.{product.price.toFixed(2)}</TableCell>
               <TableCell className="text-center">
                 <Badge variant={product.stock > 10 ? "default" : product.stock > 0 ? "secondary" : "destructive"}>
                   {product.stock > 0 ? product.stock : "Out"}
