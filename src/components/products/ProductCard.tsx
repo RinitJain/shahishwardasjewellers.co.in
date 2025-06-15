@@ -1,3 +1,4 @@
+
 "use client"; // For useWishlist hook
 
 import Link from 'next/link';
@@ -50,7 +51,7 @@ export function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </CardTitle>
           <p className="text-sm text-muted-foreground capitalize">{product.category.replace('-', ' ')}</p>
-          <p className="mt-2 font-semibold text-base text-foreground">${product.price.toFixed(2)}</p>
+          <p className="mt-2 font-semibold text-base text-foreground">₹{product.price.toFixed(2)}</p>
         </CardContent>
       </Link>
       <CardFooter className="p-3 border-t">

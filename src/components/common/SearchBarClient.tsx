@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState, useEffect, useRef } from 'react';
@@ -79,7 +80,7 @@ export function SearchBarClient() {
                   />
                   <div>
                     <p className="text-sm font-medium text-foreground">{product.name}</p>
-                    <p className="text-xs text-muted-foreground">${product.price.toFixed(2)}</p>
+                    <p className="text-xs text-muted-foreground">₹{product.price.toFixed(2)}</p>
                   </div>
                 </div>
               </Link>
