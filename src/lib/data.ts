@@ -1,3 +1,4 @@
+
 import type { Product, Category } from '@/types';
 
 export const categories: Category[] = [
