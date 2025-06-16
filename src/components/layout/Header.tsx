@@ -1,14 +1,20 @@
 
+"use client";
+
 import Link from 'next/link';
 import { Logo } from '@/components/Logo';
 import { UserNav } from '@/components/layout/UserNav';
 import { SearchBarClient } from '@/components/common/SearchBarClient';
 import { Button } from '@/components/ui/button';
-import { Heart, ShoppingCart, Menu } from 'lucide-react';
+import { Heart, Menu } from 'lucide-react';
 import { categories } from '@/lib/data';
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { usePathname } from 'next/navigation';
+import { cn } from '@/lib/utils';
 
 export function Header() {
+  const pathname = usePathname();
+
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
@@ -28,17 +34,36 @@ export function Header() {
                   <div className="pt-4 mt-4 border-t"> {/* UserNav in mobile sheet */}
                     <UserNav />
                   </div>
-                  <Link href="/" className="text-lg font-medium hover:text-primary transition-colors">Home</Link>
+                  <Link
+                    href="/"
+                    className={cn(
+                      "text-lg font-medium transition-colors",
+                      pathname === "/" ? "text-primary font-semibold" : "hover:text-primary"
+                    )}
+                  >
+                    Home
+                  </Link>
                   {categories.slice(0,4).map((category) => (
                     <Link
                       key={category.id}
                       href={`/categories/${category.slug}`}
-                      className="text-lg font-medium hover:text-primary transition-colors"
+                      className={cn(
+                        "text-lg font-medium transition-colors",
+                        pathname === `/categories/${category.slug}` ? "text-primary font-semibold" : "hover:text-primary"
+                      )}
                     >
                       {category.name}
                     </Link>
                   ))}
-                  <Link href="/categories" className="text-lg font-medium hover:text-primary transition-colors">All Categories</Link>
+                  <Link
+                    href="/categories"
+                    className={cn(
+                      "text-lg font-medium transition-colors",
+                      pathname === "/categories" ? "text-primary font-semibold" : "hover:text-primary"
+                    )}
+                  >
+                    All Categories
+                  </Link>
                 </div>
               </SheetContent>
             </Sheet>
@@ -51,19 +76,34 @@ export function Header() {
 
         {/* CENTER: Nav Links (Desktop) */}
         <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 text-sm font-medium">
-          <Link href="/" className="hover:text-primary transition-colors">
+          <Link
+            href="/"
+            className={cn(
+              "transition-colors",
+              pathname === "/" ? "text-primary font-semibold" : "hover:text-primary"
+            )}
+          >
             Home
           </Link>
           {categories.slice(0, 3).map((category) => ( // Show first 3 categories in header
             <Link
               key={category.id}
               href={`/categories/${category.slug}`}
-              className="hover:text-primary transition-colors"
+              className={cn(
+                "transition-colors",
+                pathname === `/categories/${category.slug}` ? "text-primary font-semibold" : "hover:text-primary"
+              )}
             >
               {category.name}
             </Link>
           ))}
-          <Link href="/categories" className="hover:text-primary transition-colors">
+          <Link
+            href="/categories"
+            className={cn(
+              "transition-colors",
+               pathname === "/categories" && !categories.slice(0,3).some(c => pathname === `/categories/${c.slug}`) ? "text-primary font-semibold" : "hover:text-primary"
+            )}
+          >
             More Categories
           </Link>
         </nav>
@@ -84,7 +124,6 @@ export function Header() {
               <ShoppingCart className="h-5 w-5" />
             </Link>
           </Button> */}
-          {/* UserNav was here, now on the left for desktop, and in sheet for mobile */}
         </div>
       </div>
       <div className="sm:hidden p-2 border-t border-border/40"> {/* Mobile Search Bar */}
