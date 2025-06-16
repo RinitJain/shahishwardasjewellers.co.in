@@ -1,7 +1,8 @@
+
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardDescription, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { ShoppingBag } from "lucide-react";
@@ -9,17 +10,22 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function OrdersPage() {
-  const { currentUser, loading } = useAuth();
+  const { currentUser, loading: authLoading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && !currentUser) {
+    if (!authLoading && !currentUser) {
       router.push('/login');
     }
-  }, [currentUser, loading, router]);
+  }, [currentUser, authLoading, router]);
   
-  if (loading || !currentUser) {
-    return <div className="container mx-auto py-12 text-center"><p>Loading orders...</p></div>;
+  if (authLoading) {
+    return <div className="container mx-auto flex min-h-[50vh] items-center justify-center py-12 text-center"><p>Verifying authentication...</p></div>;
+  }
+  
+  if (!currentUser) {
+    // This will be caught by the useEffect and redirected.
+    return <div className="container mx-auto flex min-h-[50vh] items-center justify-center py-12 text-center"><p>Redirecting to login...</p></div>;
   }
   
   // Placeholder for orders data

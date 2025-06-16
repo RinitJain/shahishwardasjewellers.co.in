@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useAuth } from "@/contexts/AuthContext";
@@ -11,19 +12,36 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 
 export default function ProfilePage() {
-  const { currentUser, userProfile, loading } = useAuth();
+  const { currentUser, userProfile, loading: authLoading } = useAuth();
   const router = useRouter();
 
   useEffect(() => {
-    if (!loading && !currentUser) {
+    // This effect handles redirecting if the user is definitely not logged in
+    // after the auth state has finished loading.
+    if (!authLoading && !currentUser) {
       router.push('/login');
     }
-  }, [currentUser, loading, router]);
-  
-  if (loading || !currentUser || !userProfile) {
-    return <div className="container mx-auto py-12 text-center"><p>Loading profile...</p></div>;
+  }, [currentUser, authLoading, router]);
+
+  // Primary loading state: waiting for AuthContext to determine auth status
+  if (authLoading) {
+    return <div className="container mx-auto flex min-h-[50vh] items-center justify-center py-12 text-center"><p>Verifying authentication...</p></div>;
   }
 
+  // If, after auth loading, there's still no currentUser,
+  // the useEffect above will handle the redirect.
+  // This state is a fallback or a brief moment before redirection.
+  if (!currentUser) {
+    return <div className="container mx-auto flex min-h-[50vh] items-center justify-center py-12 text-center"><p>Redirecting to login...</p></div>;
+  }
+  
+  // Authenticated user, but profile details might still be loading from Firestore
+  // (This check assumes userProfile might take a moment longer than currentUser itself if not bundled in AuthContext)
+  if (!userProfile) {
+    return <div className="container mx-auto flex min-h-[50vh] items-center justify-center py-12 text-center"><p>Loading profile details...</p></div>;
+  }
+
+  // At this point, currentUser and userProfile should be available
   const userInitial = userProfile.username ? userProfile.username.charAt(0).toUpperCase() : (userProfile.email ? userProfile.email.charAt(0).toUpperCase() : 'U');
 
   return (
