@@ -35,7 +35,7 @@ export default function CategoryPage({ params }: CategoryPageProps) {
   if (!category) {
     return (
       <div className="container mx-auto px-4 py-12 text-center">
-        <h1 className="font-headline text-3xl text-destructive mb-4">Category Not Found</h1>
+        <h1 className="font-headline text-2xl sm:text-3xl text-destructive mb-4">Category Not Found</h1>
         <p className="text-muted-foreground mb-6">The category you are looking for does not exist.</p>
         <Link href="/categories" className="text-primary hover:underline">
           View all categories
@@ -66,8 +66,8 @@ export default function CategoryPage({ params }: CategoryPageProps) {
         </BreadcrumbList>
       </Breadcrumb>
 
-      <h1 className="mb-4 font-headline text-4xl text-primary">{category.name}</h1>
-      {category.description && <p className="mb-8 text-lg text-muted-foreground">{category.description}</p>}
+      <h1 className="mb-4 font-headline text-3xl sm:text-4xl text-primary">{category.name}</h1>
+      {category.description && <p className="mb-8 text-base sm:text-lg text-muted-foreground">{category.description}</p>}
       
       <ProductGrid products={products} />
     </div>

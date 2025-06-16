@@ -37,7 +37,7 @@ export function Header() {
                   <Link
                     href="/"
                     className={cn(
-                      "text-lg font-medium transition-colors",
+                      "text-base font-medium transition-colors", // Adjusted text size
                       pathname === "/" ? "text-primary font-semibold" : "hover:text-primary"
                     )}
                   >
@@ -48,7 +48,7 @@ export function Header() {
                       key={category.id}
                       href={`/categories/${category.slug}`}
                       className={cn(
-                        "text-lg font-medium transition-colors",
+                        "text-base font-medium transition-colors", // Adjusted text size
                         pathname === `/categories/${category.slug}` ? "text-primary font-semibold" : "hover:text-primary"
                       )}
                     >
@@ -58,7 +58,7 @@ export function Header() {
                   <Link
                     href="/categories"
                     className={cn(
-                      "text-lg font-medium transition-colors",
+                      "text-base font-medium transition-colors", // Adjusted text size
                       pathname === "/categories" ? "text-primary font-semibold" : "hover:text-primary"
                     )}
                   >
