@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from 'next/link';
@@ -15,7 +16,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from '@/contexts/AuthContext';
 import { auth } from '@/lib/firebase';
-import { User as UserIcon, LogOut, Settings, ShoppingBag, LayoutDashboard } from 'lucide-react'; // Added ShoppingBag
+import { User as UserIcon, LogOut, Settings, ShoppingBag, LayoutDashboard, LogIn, UserPlus } from 'lucide-react';
 
 export function UserNav() {
   const { currentUser, userProfile, isAdmin } = useAuth();
@@ -23,19 +24,34 @@ export function UserNav() {
 
   const handleLogout = async () => {
     await auth.signOut();
+    localStorage.removeItem('isAdminAccessGrantedSIJ'); // Clear admin flag on logout
     router.push('/'); // Redirect to home page after logout
   };
 
   if (!currentUser) {
     return (
-      <div className="flex items-center gap-2">
-        <Button variant="ghost" asChild>
-          <Link href="/login">Login</Link>
-        </Button>
-        <Button variant="outline" className="border-accent text-accent hover:bg-accent hover:text-accent-foreground" asChild>
-          <Link href="/signup">Sign Up</Link>
-        </Button>
-      </div>
+      <DropdownMenu>
+        <DropdownMenuTrigger asChild>
+          <Button variant="ghost" className="relative h-9 w-9 rounded-full">
+            <UserIcon className="h-5 w-5" />
+            <span className="sr-only">User menu</span>
+          </Button>
+        </DropdownMenuTrigger>
+        <DropdownMenuContent className="w-56" align="end" forceMount>
+          <DropdownMenuItem asChild>
+            <Link href="/login" className="cursor-pointer">
+              <LogIn className="mr-2 h-4 w-4" />
+              <span>Login</span>
+            </Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem asChild>
+            <Link href="/signup" className="cursor-pointer">
+              <UserPlus className="mr-2 h-4 w-4" />
+              <span>Sign Up</span>
+            </Link>
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     );
   }
 
@@ -44,9 +60,8 @@ export function UserNav() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative h-8 w-8 rounded-full">
+        <Button variant="ghost" className="relative h-9 w-9 rounded-full">
           <Avatar className="h-9 w-9">
-            {/* Placeholder for user avatar image if available */}
             {/* <AvatarImage src={userProfile?.avatarUrl} alt={userProfile?.username || "User Avatar"} /> */}
             <AvatarFallback className="bg-primary text-primary-foreground">
               {userInitial}
@@ -72,7 +87,6 @@ export function UserNav() {
             </Link>
           </DropdownMenuItem>
           <DropdownMenuItem asChild>
-             {/* This should go to order history or similar user-specific page */}
             <Link href="/orders" className="cursor-pointer"> 
               <ShoppingBag className="mr-2 h-4 w-4" />
               <span>My Orders</span>
