@@ -1,11 +1,2 @@
-export default function AuthLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
-  return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-gradient-to-br from-primary/5 via-background to-accent/5 p-4">
-      <main>{children}</main>
-    </div>
-  );
-}
+// This layout for the (auth) group is no longer needed and can be deleted.
+// The login and signup pages it contained are removed.

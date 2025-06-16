@@ -1,3 +1,4 @@
+
 import { MetadataRoute } from 'next'
  
 export default function robots(): MetadataRoute.Robots {
@@ -5,7 +6,7 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: ['/admin/', '/profile/', '/orders/'],
+      disallow: ['/admin/'], // Removed /profile/ and /orders/ (assuming orders is now public)
     },
     sitemap: 'https://www.shahjewellers.com/sitemap.xml', // Replace with actual domain
   }

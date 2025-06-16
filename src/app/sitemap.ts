@@ -1,3 +1,4 @@
+
 import { MetadataRoute } from 'next'
 import { categories, products } from '@/lib/data' // Assuming data.ts exports these
 
@@ -23,19 +24,25 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.5,
     },
+    {
+      url: `${BASE_URL}/orders`, // Assuming orders page is now a static info page
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.5,
+    },
     // Add other static pages like about, contact etc.
   ];
 
   const categoryPages: MetadataRoute.Sitemap = categories.map((category) => ({
     url: `${BASE_URL}/categories/${category.slug}`,
-    lastModified: new Date(), // Or a more specific date if available
+    lastModified: new Date(), 
     changeFrequency: 'weekly',
     priority: 0.7,
   }));
 
   const productPages: MetadataRoute.Sitemap = products.map((product) => ({
     url: `${BASE_URL}/products/${product.slug}`,
-    lastModified: new Date(), // Or a more specific date if available
+    lastModified: new Date(), 
     changeFrequency: 'monthly',
     priority: 0.9,
   }));

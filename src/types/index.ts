@@ -22,10 +22,11 @@ export interface Category {
   'data-ai-hint'?: string;
 }
 
-export interface UserProfile {
-  uid: string;
-  email: string | null;
-  username?: string;
-  phoneNumber?: string;
-  isAdmin?: boolean;
-}
+// UserProfile is no longer needed as user auth system is removed.
+// export interface UserProfile {
+//   uid: string;
+//   email: string | null;
+//   username?: string;
+//   phoneNumber?: string;
+//   isAdmin?: boolean;
+// }

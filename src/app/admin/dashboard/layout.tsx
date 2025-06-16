@@ -3,13 +3,10 @@
 
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '@/contexts/AuthContext';
 import { Button } from '@/components/ui/button';
 import { LogOut, LayoutDashboard, ShoppingBag, Users, Settings } from 'lucide-react';
 import Link from 'next/link';
 import { Logo } from '@/components/Logo';
-import { auth } from '@/lib/firebase';
-
 
 export default function AdminDashboardLayout({
   children,
@@ -17,41 +14,43 @@ export default function AdminDashboardLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const { currentUser, isAdmin, loading: authLoading } = useAuth();
+  const [isVerifying, setIsVerifying] = useState(true);
   const [isAllowedToRender, setIsAllowedToRender] = useState(false);
 
   useEffect(() => {
-    if (!authLoading) {
-      const hasAdminAccessLocalStorage = typeof window !== 'undefined' && localStorage.getItem('isAdminAccessGrantedSIJ') === 'true';
-      if (currentUser && isAdmin && hasAdminAccessLocalStorage) {
+    if (typeof window !== 'undefined') {
+      const isAdminAccessGranted = localStorage.getItem('isAdminAccessGrantedSIJ') === 'true';
+      if (isAdminAccessGranted) {
         setIsAllowedToRender(true);
       } else {
-        setIsAllowedToRender(false); 
+        setIsAllowedToRender(false);
         router.replace('/admin/login');
       }
-    } else {
-        setIsAllowedToRender(false); 
     }
-  }, [currentUser, isAdmin, authLoading, router]);
+    setIsVerifying(false);
+  }, [router]);
 
-  const handleAdminLogout = async () => {
-    await auth.signOut();
-    localStorage.removeItem('isAdminAccessGrantedSIJ');
-    router.push('/admin/login'); // Corrected to push for clearer navigation intent
+  const handleAdminLogout = () => {
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('isAdminAccessGrantedSIJ');
+    }
+    router.push('/admin/login');
   };
 
-  if (authLoading) {
+  if (isVerifying) {
     return (
       <div className="flex h-screen items-center justify-center">
-        <p>Authenticating admin...</p>
+        <p>Verifying admin session...</p>
       </div>
     );
   }
 
   if (!isAllowedToRender) {
+     // This should ideally not be reached if router.replace works in useEffect,
+     // but serves as a fallback or during the brief moment before redirection.
     return (
       <div className="flex h-screen items-center justify-center">
-        <p>Verifying admin session...</p>
+        <p>Redirecting to admin login...</p>
       </div>
     );
   }
@@ -101,7 +100,6 @@ export default function AdminDashboardLayout({
             <Button variant="outline" size="sm" onClick={handleAdminLogout}>
                 <LogOut className="mr-2 h-4 w-4" /> Logout
             </Button>
-            {/* Mobile nav trigger can be added here */}
         </header>
         {children}
       </main>

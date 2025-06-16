@@ -3,10 +3,9 @@
 
 import Link from 'next/link';
 import { Logo } from '@/components/Logo';
-import { UserNav } from '@/components/layout/UserNav';
 import { SearchBarClient } from '@/components/common/SearchBarClient';
 import { Button } from '@/components/ui/button';
-import { Heart, Menu } from 'lucide-react';
+import { Heart, Menu, LayoutDashboard } from 'lucide-react';
 import { categories } from '@/lib/data';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { usePathname } from 'next/navigation';
@@ -17,7 +16,6 @@ export function Header() {
   const pathname = usePathname();
   const [isMobileSheetOpen, setIsMobileSheetOpen] = useState(false);
 
-  // Close mobile sheet on navigation
   useEffect(() => {
     if (isMobileSheetOpen) {
       setIsMobileSheetOpen(false);
@@ -29,9 +27,8 @@ export function Header() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
-        {/* LEFT SIDE: Mobile Menu Trigger & Logo */}
         <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">
-          <div className="md:hidden"> {/* Mobile Menu Trigger */}
+          <div className="md:hidden">
             <Sheet open={isMobileSheetOpen} onOpenChange={setIsMobileSheetOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon">
@@ -44,10 +41,6 @@ export function Header() {
                   <SheetTitle>Navigation</SheetTitle>
                 </SheetHeader>
                 <div className="flex flex-col space-y-1">
-                  <div className="mb-4">
-                    <UserNav /> {/* UserNav in mobile sheet */}
-                  </div>
-                  
                   <Link
                     href="/"
                     className={cn(
@@ -87,14 +80,22 @@ export function Header() {
                   >
                     Wishlist
                   </Link>
+                  <Link
+                    href="/admin/login"
+                     className={cn(
+                        "block py-2 text-base font-medium transition-colors rounded-md px-3", 
+                        pathname === "/admin/login" ? "bg-accent text-accent-foreground" : "hover:bg-muted hover:text-primary"
+                    )}
+                  >
+                    <LayoutDashboard className="mr-2 h-4 w-4 inline-block" /> Dashboard
+                  </Link>
                 </div>
               </SheetContent>
             </Sheet>
           </div>
-          <Logo /> {/* Logo always present in this left block */}
+          <Logo />
         </div>
 
-        {/* CENTER: Nav Links (Desktop) */}
         <nav className="hidden md:flex items-center justify-center flex-1 min-w-0 space-x-4 lg:space-x-6 text-sm font-medium">
           <Link
             href="/"
@@ -105,7 +106,7 @@ export function Header() {
           >
             Home
           </Link>
-          {categories.slice(0, 3).map((category) => ( // Show first 3 categories in header
+          {categories.slice(0, 3).map((category) => (
             <Link
               key={category.id}
               href={`/categories/${category.slug}`}
@@ -128,7 +129,6 @@ export function Header() {
           </Link>
         </nav>
 
-        {/* RIGHT SIDE: Search, Wishlist, UserNav (Desktop) */}
         <div className="flex items-center justify-end space-x-2 md:space-x-3 flex-shrink-0">
           <div className="hidden sm:block w-full max-w-xs md:max-w-sm">
              <SearchBarClient />
@@ -138,12 +138,14 @@ export function Header() {
               <Heart className="h-5 w-5" />
             </Link>
           </Button>
-          <div className="hidden md:block"> {/* UserNav on desktop */}
-            <UserNav />
-          </div>
+          <Button variant="ghost" asChild className="h-9 hidden md:inline-flex">
+            <Link href="/admin/login">
+              <LayoutDashboard className="mr-2 h-4 w-4" /> Dashboard
+            </Link>
+          </Button>
         </div>
       </div>
-      <div className="sm:hidden p-2 border-t border-border/40"> {/* Mobile Search Bar */}
+      <div className="sm:hidden p-2 border-t border-border/40">
         <SearchBarClient />
       </div>
     </header>

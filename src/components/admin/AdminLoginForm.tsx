@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -11,8 +12,6 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
-import { loginUser } from '@/lib/authActions'; // Using same login server action
-import { useAuth } from '@/contexts/AuthContext'; // To check admin status
 import { Logo } from '@/components/Logo';
 
 const adminLoginSchema = z.object({
@@ -22,13 +21,13 @@ const adminLoginSchema = z.object({
 
 type AdminLoginFormData = z.infer<typeof adminLoginSchema>;
 
-const ADMIN_EMAIL = 'admin@shah.com'; // Define admin email
+const HARDCODED_ADMIN_EMAIL = 'ishwardasshah808@gmail.com';
+const HARDCODED_ADMIN_PASSWORD = 'SIJ@1234';
 
 export function AdminLoginForm() {
   const router = useRouter();
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
-  // const { currentUser, isAdmin: contextIsAdmin, loading: authLoading } = useAuth(); // Auth context can be used here
 
   const form = useForm<AdminLoginFormData>({
     resolver: zodResolver(adminLoginSchema),
@@ -40,39 +39,25 @@ export function AdminLoginForm() {
 
   async function onSubmit(data: AdminLoginFormData) {
     setIsLoading(true);
-    const formData = new FormData();
-    formData.append('email', data.email);
-    formData.append('password', data.password);
 
-    const result = await loginUser(formData);
-    
-
-    if (result.success) {
-      if (data.email === ADMIN_EMAIL) {
-        // Specific check for admin email after successful Firebase Auth login
-        // In a real app, this check would be more robust (e.g., custom claims or Firestore role)
-        localStorage.setItem('isAdminAccessGrantedSIJ', 'true'); // Simple flag for demo
-        toast({
-          title: "Admin Login Successful!",
-          description: "Welcome to the Admin Dashboard.",
-        });
-        router.push('/admin/dashboard');
-      } else {
-         toast({
-            title: "Access Denied",
-            description: "You do not have admin privileges.",
-            variant: "destructive",
-        });
-        // Optionally sign out the non-admin user or redirect them
-        // await auth.signOut(); 
-        localStorage.removeItem('isAdminAccessGrantedSIJ');
+    if (data.email === HARDCODED_ADMIN_EMAIL && data.password === HARDCODED_ADMIN_PASSWORD) {
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('isAdminAccessGrantedSIJ', 'true');
       }
+      toast({
+        title: "Admin Login Successful!",
+        description: "Welcome to the Admin Dashboard.",
+      });
+      router.push('/admin/dashboard');
     } else {
       toast({
         title: "Login Failed",
-        description: result.error || "Invalid credentials or an error occurred.",
+        description: "Invalid credentials. Please try again.",
         variant: "destructive",
       });
+       if (typeof window !== 'undefined') {
+        localStorage.removeItem('isAdminAccessGrantedSIJ');
+      }
     }
     setIsLoading(false);
   }
