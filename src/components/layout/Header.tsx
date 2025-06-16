@@ -19,7 +19,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto flex h-20 items-center justify-between px-4 md:px-6">
         {/* LEFT SIDE: Mobile Menu Trigger, Logo, (Desktop UserNav) */}
-        <div className="flex items-center space-x-2 md:space-x-4">
+        <div className="flex items-center space-x-2 md:space-x-4 flex-shrink-0">
           <div className="md:hidden"> {/* Mobile Menu Trigger */}
             <Sheet>
               <SheetTrigger asChild>
@@ -75,7 +75,7 @@ export function Header() {
         </div>
 
         {/* CENTER: Nav Links (Desktop) */}
-        <nav className="hidden md:flex items-center space-x-4 lg:space-x-6 text-sm font-medium">
+        <nav className="hidden md:flex items-center justify-center flex-1 min-w-0 space-x-4 lg:space-x-6 text-sm font-medium">
           <Link
             href="/"
             className={cn(
@@ -109,7 +109,7 @@ export function Header() {
         </nav>
 
         {/* RIGHT SIDE: Search, Wishlist (Desktop) */}
-        <div className="flex items-center justify-end space-x-2 md:space-x-4">
+        <div className="flex items-center justify-end space-x-2 md:space-x-4 flex-shrink-0">
           <div className="hidden sm:block w-full max-w-xs md:max-w-sm">
              <SearchBarClient />
           </div>
@@ -118,12 +118,6 @@ export function Header() {
               <Heart className="h-5 w-5" />
             </Link>
           </Button>
-          {/* Shopping cart icon can be added here if cart functionality is implemented */}
-          {/* <Button variant="ghost" size="icon" asChild aria-label="Shopping Cart">
-            <Link href="/cart">
-              <ShoppingCart className="h-5 w-5" />
-            </Link>
-          </Button> */}
         </div>
       </div>
       <div className="sm:hidden p-2 border-t border-border/40"> {/* Mobile Search Bar */}
