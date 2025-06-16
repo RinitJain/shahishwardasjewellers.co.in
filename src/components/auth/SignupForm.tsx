@@ -26,7 +26,7 @@ const signupSchema = z.object({
 type SignupFormData = z.infer<typeof signupSchema>;
 
 export function SignupForm() {
-  const router = useRouter();
+  const router = useRouter(); // Still needed for links
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -44,7 +44,7 @@ export function SignupForm() {
     setIsLoading(true);
     const formData = new FormData();
     Object.entries(data).forEach(([key, value]) => {
-      if (value !== undefined) { // Ensure optional fields are handled
+      if (value !== undefined) { 
          formData.append(key, value as string);
       }
     });
@@ -57,10 +57,9 @@ export function SignupForm() {
         title: "Account Created!",
         description: "You have successfully signed up.",
       });
-      router.push('/profile'); // Redirect to profile page after signup
+      // router.push('/profile'); // Removed: Page component will handle redirect
     } else {
       if (result.errors) {
-        // Handle validation errors from server action if any (though client-side should catch most)
         Object.entries(result.errors).forEach(([field, errors]) => {
           form.setError(field as keyof SignupFormData, { message: (errors as string[])[0] });
         });

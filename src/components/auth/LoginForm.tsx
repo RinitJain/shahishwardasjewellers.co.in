@@ -24,7 +24,7 @@ const loginSchema = z.object({
 type LoginFormData = z.infer<typeof loginSchema>;
 
 export function LoginForm() {
-  const router = useRouter();
+  const router = useRouter(); // Still needed for forgot password, etc.
   const { toast } = useToast();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -50,7 +50,7 @@ export function LoginForm() {
         title: "Login Successful!",
         description: "Welcome back to Shah Ishwardas Jewellers.",
       });
-      router.push('/profile'); // Redirect to profile page after login
+      // router.push('/profile'); // Removed: Page component will handle redirect
     } else {
       toast({
         title: "Login Failed",
