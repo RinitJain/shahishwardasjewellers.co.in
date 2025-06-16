@@ -5,7 +5,7 @@ export interface Product {
   slug: string;
   description: string;
   price: number;
-  category: string;
+  category: string; // This will be the category slug
   images: string[]; // URLs
   material: string;
   careInstructions: string;
@@ -21,12 +21,3 @@ export interface Category {
   description?: string;
   'data-ai-hint'?: string;
 }
-
-// UserProfile is no longer needed as user auth system is removed.
-// export interface UserProfile {
-//   uid: string;
-//   email: string | null;
-//   username?: string;
-//   phoneNumber?: string;
-//   isAdmin?: boolean;
-// }
