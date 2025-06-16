@@ -8,7 +8,7 @@ import { SearchBarClient } from '@/components/common/SearchBarClient';
 import { Button } from '@/components/ui/button';
 import { Heart, Menu } from 'lucide-react';
 import { categories } from '@/lib/data';
-import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
@@ -29,7 +29,10 @@ export function Header() {
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="w-full max-w-xs bg-background p-6">
-                <div className="flex flex-col space-y-4">
+                <SheetHeader>
+                  <SheetTitle>Navigation</SheetTitle>
+                </SheetHeader>
+                <div className="flex flex-col space-y-4 mt-4">
                   <Logo />
                   <div className="pt-4 mt-4 border-t"> {/* UserNav in mobile sheet */}
                     <UserNav />
@@ -37,7 +40,7 @@ export function Header() {
                   <Link
                     href="/"
                     className={cn(
-                      "text-base font-medium transition-colors", // Adjusted text size
+                      "text-base font-medium transition-colors", 
                       pathname === "/" ? "text-primary font-semibold" : "hover:text-primary"
                     )}
                   >
@@ -48,7 +51,7 @@ export function Header() {
                       key={category.id}
                       href={`/categories/${category.slug}`}
                       className={cn(
-                        "text-base font-medium transition-colors", // Adjusted text size
+                        "text-base font-medium transition-colors", 
                         pathname === `/categories/${category.slug}` ? "text-primary font-semibold" : "hover:text-primary"
                       )}
                     >
@@ -58,7 +61,7 @@ export function Header() {
                   <Link
                     href="/categories"
                     className={cn(
-                      "text-base font-medium transition-colors", // Adjusted text size
+                      "text-base font-medium transition-colors", 
                       pathname === "/categories" ? "text-primary font-semibold" : "hover:text-primary"
                     )}
                   >
