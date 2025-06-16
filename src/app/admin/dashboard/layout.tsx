@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useEffect, useState } from 'react';
@@ -16,31 +17,41 @@ export default function AdminDashboardLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
-  const { currentUser, isAdmin, loading } = useAuth();
-  const [isClientAdmin, setIsClientAdmin] = useState(false); // Client-side check for robustness
+  const { currentUser, isAdmin, loading: authLoading } = useAuth();
+  const [isAllowedToRender, setIsAllowedToRender] = useState(false);
 
   useEffect(() => {
-     // Check local storage flag as a fallback or for quick UI updates
-    const localAdminFlag = localStorage.getItem('isAdminAccessGrantedSIJ') === 'true';
-    setIsClientAdmin(localAdminFlag);
-
-    if (!loading) {
-      if (!currentUser || (!isAdmin && !localAdminFlag)) {
+    if (!authLoading) {
+      const hasAdminAccessLocalStorage = typeof window !== 'undefined' && localStorage.getItem('isAdminAccessGrantedSIJ') === 'true';
+      if (currentUser && isAdmin && hasAdminAccessLocalStorage) {
+        setIsAllowedToRender(true);
+      } else {
+        setIsAllowedToRender(false); 
         router.replace('/admin/login');
       }
+    } else {
+        setIsAllowedToRender(false); 
     }
-  }, [currentUser, isAdmin, loading, router]);
+  }, [currentUser, isAdmin, authLoading, router]);
 
   const handleAdminLogout = async () => {
     await auth.signOut();
     localStorage.removeItem('isAdminAccessGrantedSIJ');
-    router.push('/admin/login');
+    router.push('/admin/login'); // Corrected to push for clearer navigation intent
   };
 
-  if (loading || (!currentUser && !isClientAdmin) || (!isAdmin && !isClientAdmin)) {
+  if (authLoading) {
     return (
       <div className="flex h-screen items-center justify-center">
-        <p>Loading or authenticating admin...</p>
+        <p>Authenticating admin...</p>
+      </div>
+    );
+  }
+
+  if (!isAllowedToRender) {
+    return (
+      <div className="flex h-screen items-center justify-center">
+        <p>Verifying admin session...</p>
       </div>
     );
   }
