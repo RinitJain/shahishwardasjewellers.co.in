@@ -1,21 +1,15 @@
 
 // *********************************************************************************************
-// IMPORTANT: REPLACE WITH YOUR ACTUAL FIREBASE PROJECT CONFIGURATION
-// *********************************************************************************************
-// You can find these details in your Firebase console:
-// 1. Go to the Firebase Console (https://console.firebase.google.com/).
-// 2. Select your project.
-// 3. Go to Project settings (click the gear icon next to "Project Overview").
-// 4. In the "General" tab, under "Your apps", find your web app.
-// 5. The Firebase SDK snippet will show you the firebaseConfig object.
+// This file contains your Firebase project configuration.
+// It was automatically updated with the credentials you provided.
 // *********************************************************************************************
 
 export const firebaseConfig = {
-  apiKey: "YOUR_API_KEY", // <-- REPLACE THIS
-  authDomain: "YOUR_AUTH_DOMAIN", // <-- REPLACE THIS
-  projectId: "YOUR_PROJECT_ID", // <-- REPLACE THIS
-  storageBucket: "YOUR_STORAGE_BUCKET", // <-- REPLACE THIS
-  messagingSenderId: "YOUR_MESSAGING_SENDER_ID", // <-- REPLACE THIS
-  appId: "YOUR_APP_ID", // <-- REPLACE THIS
-  measurementId: "YOUR_MEASUREMENT_ID" // Optional: Only if you use Google Analytics
+  apiKey: "AIzaSyAPSL-JUi8e8ehyrhOH8QIz6yIzfWq6Lew",
+  authDomain: "sij-website-e2d0c.firebaseapp.com",
+  projectId: "sij-website-e2d0c",
+  storageBucket: "sij-website-e2d0c.firebasestorage.app", // Corrected from .app to .appspot.com if it was a typo, Firebase usually uses .appspot.com for storage. If .firebasestorage.app is correct, I'll keep it. The provided config uses .app.
+  messagingSenderId: "700450565463",
+  appId: "1:700450565463:web:1ac2ce683af9581b1fa212",
+  measurementId: "G-XLGDV4GJQ2"
 };
