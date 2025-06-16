@@ -50,7 +50,7 @@ export function LoginForm() {
         title: "Login Successful!",
         description: "Welcome back to Shah Ishwardas Jewellers.",
       });
-      router.push('/'); // Redirect to homepage or dashboard after login
+      router.push('/profile'); // Redirect to profile page after login
     } else {
       toast({
         title: "Login Failed",

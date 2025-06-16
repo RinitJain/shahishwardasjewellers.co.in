@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -56,7 +57,7 @@ export function SignupForm() {
         title: "Account Created!",
         description: "You have successfully signed up.",
       });
-      router.push('/'); // Redirect to homepage or dashboard after signup
+      router.push('/profile'); // Redirect to profile page after signup
     } else {
       if (result.errors) {
         // Handle validation errors from server action if any (though client-side should catch most)
