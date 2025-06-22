@@ -17,11 +17,11 @@ export const products: Product[] = [
     description: 'A timeless piece crafted from 22k gold, featuring intricate floral patterns. Perfect for weddings and grand occasions.',
     price: 1250.00,
     category: 'necklaces',
-    images: ['https://placehold.co/600x800.png', 'https://placehold.co/600x800.png', 'https://placehold.co/600x800.png'],
+    images: ['https://placehold.co/800x800.png', 'https://placehold.co/800x800.png', 'https://placehold.co/800x800.png'],
     material: '22k Gold',
     careInstructions: 'Store in a soft pouch. Avoid contact with perfumes and chemicals. Clean with a soft, dry cloth.',
     stock: 10,
-    'data-ai-hint': 'gold necklace indian',
+    'data-ai-hint': 'gold floral necklace',
   },
   {
     id: '2',
