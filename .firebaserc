@@ -1,5 +1,7 @@
 {
   "projects": {
     "default": "lunar-inn-415209"
-  }
+  },
+  "targets": {},
+  "etags": {}
 }
