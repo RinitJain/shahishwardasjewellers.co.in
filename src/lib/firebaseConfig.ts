@@ -1,15 +1,17 @@
 
 // *********************************************************************************************
 // This file contains your Firebase project configuration.
-// It was automatically updated with the credentials you provided.
+// Please update it with your new project's credentials.
 // *********************************************************************************************
+// You can find this in your Firebase console:
+// Project settings (gear icon) > General > Your apps > SDK setup and configuration
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyAPSL-JUi8e8ehyrhOH8QIz6yIzfWq6Lew",
-  authDomain: "sij-website-e2d0c.firebaseapp.com",
-  projectId: "sij-website-e2d0c",
-  storageBucket: "sij-website-e2d0c.appspot.com",
-  messagingSenderId: "700450565463",
-  appId: "1:700450565463:web:1ac2ce683af9581b1fa212",
-  measurementId: "G-XLGDV4GJQ2"
+  apiKey: "YOUR_API_KEY",
+  authDomain: "YOUR_PROJECT_ID.firebaseapp.com",
+  projectId: "YOUR_PROJECT_ID",
+  storageBucket: "YOUR_PROJECT_ID.appspot.com",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID",
+  appId: "YOUR_APP_ID",
+  measurementId: "YOUR_MEASUREMENT_ID"
 };
