@@ -30,7 +30,7 @@ export const products: Product[] = [
     description: 'An exquisite solitaire diamond ring set in platinum. Its brilliance captures the essence of eternal love.',
     price: 2800.00,
     category: 'rings',
-    images: ['https://placehold.co/600x800.png', 'https://placehold.co/600x800.png'],
+    images: ['https://images.unsplash.com/photo-1719924998065-0c60e329ef58?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwxfHxkaWFtb25kJTIwcmluZ3xlbnwwfHx8fDE3NTA1NzE4NTV8MA&ixlib=rb-4.1.0&q=80&w=1080'],
     material: 'Platinum, 1.5ct Diamond (VS1, G Color)',
     careInstructions: 'Clean regularly with a specialized diamond cleaner. Avoid hard knocks. Store separately.',
     stock: 5,
