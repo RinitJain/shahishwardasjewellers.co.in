@@ -17,7 +17,7 @@ export const products: Product[] = [
     description: 'A timeless piece crafted from 22k gold, featuring intricate floral patterns. Perfect for weddings and grand occasions.',
     price: 1250.00,
     category: 'necklaces',
-    images: ['/images/seraphina-gold-necklace.png', '/images/seraphina-gold-necklace-2.png', '/images/seraphina-gold-necklace-3.png'],
+    images: ['https://images.unsplash.com/photo-1600862754152-80a263dd564f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHw1fHxHb2xkJTIwTmVja2xhY2V8ZW58MHx8fHwxNzUwNTcxNzY1fDA&ixlib=rb-4.1.0&q=80&w=1080'],
     material: '22k Gold',
     careInstructions: 'Store in a soft pouch. Avoid contact with perfumes and chemicals. Clean with a soft, dry cloth.',
     stock: 10,
