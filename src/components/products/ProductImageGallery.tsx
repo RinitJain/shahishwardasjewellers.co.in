@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useState } from 'react';
@@ -36,9 +37,8 @@ export function ProductImageGallery({ images, altText, productHint }: ProductIma
               <Image
                 src={image}
                 alt={`${altText} - view ${index + 1}`}
-                layout="fill"
-                objectFit="cover"
-                className="transition-opacity hover:opacity-80"
+                fill
+                className="object-cover transition-opacity hover:opacity-80"
                 data-ai-hint={productHint || "jewelry detail"}
               />
             </button>
@@ -49,9 +49,8 @@ export function ProductImageGallery({ images, altText, productHint }: ProductIma
         <Image
           src={selectedImage}
           alt={altText}
-          layout="fill"
-          objectFit="cover"
-          className="transition-opacity duration-300"
+          fill
+          className="object-cover transition-opacity duration-300"
           priority={true} // For LCP
           data-ai-hint={productHint || "jewelry main"}
         />

@@ -17,11 +17,11 @@ export const products: Product[] = [
     description: 'A timeless piece crafted from 22k gold, featuring intricate floral patterns. Perfect for weddings and grand occasions.',
     price: 1250.00,
     category: 'necklaces',
-    images: ['https://placehold.co/800x800.png', 'https://placehold.co/800x800.png', 'https://placehold.co/800x800.png'],
+    images: ['/images/seraphina-gold-necklace.png', '/images/seraphina-gold-necklace-2.png', '/images/seraphina-gold-necklace-3.png'],
     material: '22k Gold',
     careInstructions: 'Store in a soft pouch. Avoid contact with perfumes and chemicals. Clean with a soft, dry cloth.',
     stock: 10,
-    'data-ai-hint': 'gold floral necklace',
+    'data-ai-hint': 'intricate gold necklace',
   },
   {
     id: '2',

@@ -1,3 +1,4 @@
+
 import { CategoryCard } from '@/components/products/CategoryCard';
 import { ProductCard } from '@/components/products/ProductCard';
 import { categories, products } from '@/lib/data';
@@ -16,9 +17,8 @@ export default function HomePage() {
         <Image 
           src="https://placehold.co/1600x900.png" 
           alt="Elegant Jewellery Collection"
-          layout="fill"
-          objectFit="cover"
-          className="opacity-30"
+          fill
+          className="object-cover opacity-30"
           data-ai-hint="luxury jewelry lifestyle"
           priority
         />
