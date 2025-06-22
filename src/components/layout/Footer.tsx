@@ -10,7 +10,7 @@ export function Footer() {
           <div>
             <Logo />
             <p className="mt-2 text-sm">
-              Exquisite jewellery, timeless designs. Since 19XX.
+              Exquisite jewellery, timeless designs. Since 1969.
             </p>
           </div>
           <div>
