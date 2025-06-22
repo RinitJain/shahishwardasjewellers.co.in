@@ -33,11 +33,11 @@ export default async function HomePage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] min-h-[400px] w-full overflow-hidden bg-gradient-to-r from-primary/10 via-background to-primary/5">
         <Image 
-          src="https://placehold.co/1600x900.png" 
+          src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1964&auto=format&fit=crop" 
           alt="Elegant Jewellery Collection"
           fill
           className="object-cover opacity-30"
-          data-ai-hint="luxury jewelry lifestyle"
+          data-ai-hint="elegant jewelry"
           priority
         />
         <div className="absolute inset-0 flex flex-col items-center justify-center text-center p-4">
