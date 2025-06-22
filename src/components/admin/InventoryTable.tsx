@@ -97,7 +97,7 @@ export function InventoryTable({ products, onEditProduct, onDeleteProduct, isLoa
                 </TableCell>
                 <TableCell className="font-medium p-2 sm:p-4">{product.name}</TableCell>
                 <TableCell className="capitalize hidden md:table-cell p-2 sm:p-4">{product.category.replace('-', ' ')}</TableCell>
-                <TableCell className="text-right p-2 sm:p-4">Rs.{product.price.toFixed(2)}</TableCell>
+                <TableCell className="text-right p-2 sm:p-4">Rs.{product.price.toLocaleString('en-IN')}</TableCell>
                 <TableCell className="text-center hidden sm:table-cell p-2 sm:p-4">
                   <Badge variant={product.stock > 10 ? "default" : product.stock > 0 ? "secondary" : "destructive"}>
                     {product.stock > 0 ? product.stock : "Out"}

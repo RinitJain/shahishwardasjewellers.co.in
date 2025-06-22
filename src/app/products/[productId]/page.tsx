@@ -95,7 +95,7 @@ export default function ProductPage({ params }: ProductPageProps) {
           <h1 className="font-headline text-3xl lg:text-4xl text-primary">{product.name}</h1>
           
           <div className="flex items-center gap-2">
-            <p className="text-3xl font-semibold text-foreground">Rs.{product.price.toFixed(2)}</p>
+            <p className="text-3xl font-semibold text-foreground">Rs.{product.price.toLocaleString('en-IN')}</p>
             {product.stock > 0 && product.stock < 10 && (
               <Badge variant="destructive">Low Stock</Badge>
             )}

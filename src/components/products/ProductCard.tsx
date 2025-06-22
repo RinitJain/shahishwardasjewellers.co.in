@@ -51,7 +51,7 @@ export function ProductCard({ product }: ProductCardProps) {
             {product.name}
           </CardTitle>
           <p className="text-sm text-muted-foreground capitalize">{product.category.replace('-', ' ')}</p>
-          <p className="mt-2 font-semibold text-base text-foreground">Rs.{product.price.toFixed(2)}</p>
+          <p className="mt-2 font-semibold text-base text-foreground">Rs.{product.price.toLocaleString('en-IN')}</p>
         </CardContent>
       </Link>
       <CardFooter className="p-3 border-t">
