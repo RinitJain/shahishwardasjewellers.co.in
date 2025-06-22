@@ -56,7 +56,7 @@ export const products: Product[] = [
     description: 'A delicate sterling silver chain bracelet with moonstone charms. Perfect for everyday elegance.',
     price: 350.00,
     category: 'bracelets',
-    images: ['https://placehold.co/600x800.png'],
+    images: ['https://images.unsplash.com/photo-1744722093742-aad22c7fa68b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxTaWx2ZXIlMjBicmFjZWxldHxlbnwwfHx8fDE3NTA1NzE5MTV8MA&ixlib=rb-4.1.0&q=80&w=1080'],
     material: 'Sterling Silver, Moonstones',
     careInstructions: 'Polish regularly with a silver polishing cloth. Store in an anti-tarnish bag.',
     stock: 20,
