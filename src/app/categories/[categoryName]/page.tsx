@@ -1,3 +1,4 @@
+
 import { ProductGrid } from '@/components/products/ProductGrid';
 import { getProductsByCategory, getCategoryBySlug, categories as allCategories } from '@/lib/data';
 import { Metadata } from 'next';

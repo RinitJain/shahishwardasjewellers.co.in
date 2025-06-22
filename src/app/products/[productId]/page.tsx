@@ -1,5 +1,5 @@
 
-import { getProductBySlug, products as allProducts, getCategoryBySlug } from '@/lib/data';
+import { getProductBySlug, getCategoryBySlug } from '@/lib/data';
 import { Metadata } from 'next';
 import Image from 'next/image'; // Using ProductImageGallery now
 import { ProductImageGallery } from '@/components/products/ProductImageGallery';
@@ -8,6 +8,8 @@ import { Separator } from '@/components/ui/separator';
 import { Badge } from '@/components/ui/badge';
 import Link from 'next/link';
 import { Breadcrumb, BreadcrumbItem, BreadcrumbLink, BreadcrumbList, BreadcrumbPage, BreadcrumbSeparator } from '@/components/ui/breadcrumb';
+import type { Product } from '@/types';
+import { products as allProducts } from '@/lib/data';
 
 
 interface ProductPageProps {
@@ -28,7 +30,14 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 }
 
 export async function generateStaticParams() {
-  return allProducts.map((product) => ({
+   let productsData: Product[] = [];
+    if (typeof window !== 'undefined') {
+      const storedProducts = localStorage.getItem('adminManagedProductsSIJ');
+      productsData = storedProducts ? JSON.parse(storedProducts) : allProducts;
+    } else {
+      productsData = allProducts;
+    }
+  return productsData.map((product) => ({
     productId: product.slug,
   }));
 }

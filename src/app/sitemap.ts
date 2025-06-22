@@ -1,10 +1,13 @@
 
 import { MetadataRoute } from 'next'
-import { categories, products } from '@/lib/data' // Assuming data.ts exports these
+import { categories } from '@/lib/data' // Assuming data.ts exports these
+import type { Product } from '@/types';
 
 const BASE_URL = 'https://www.shahjewellers.com'; // Replace with actual domain
  
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const { products } = await import('@/lib/data');
+
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: BASE_URL,

@@ -43,7 +43,7 @@ export const products: Product[] = [
     description: 'Elegant drop earrings featuring pear-shaped sapphires surrounded by a halo of micro-pavé diamonds, set in 18k white gold.',
     price: 950.00,
     category: 'earrings',
-    images: ['https://placehold.co/600x800.png'],
+    images: ['https://images.unsplash.com/photo-1693212793204-bcea856c75fe?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwyfHxkaWFtb25kJTIwZWFycmluZ3N8ZW58MHx8fHwxNzUwNTcwNjM3fDA&ixlib=rb-4.1.0&q=80&w=1080'],
     material: '18k White Gold, Sapphires, Diamonds',
     careInstructions: 'Handle with care. Clean with a soft cloth. Avoid ultrasonic cleaners for gemstone jewelry.',
     stock: 15,
@@ -117,11 +117,25 @@ export const products: Product[] = [
 ];
 
 export const getProductsByCategory = (categorySlug: string): Product[] => {
-  return products.filter(product => product.category === categorySlug);
+  let productsData: Product[] = [];
+  if (typeof window !== 'undefined') {
+    const storedProducts = localStorage.getItem('adminManagedProductsSIJ');
+    productsData = storedProducts ? JSON.parse(storedProducts) : products;
+  } else {
+    productsData = products;
+  }
+  return productsData.filter(product => product.category === categorySlug);
 };
 
 export const getProductBySlug = (slug: string): Product | undefined => {
-  return products.find(product => product.slug === slug);
+    let productsData: Product[] = [];
+    if (typeof window !== 'undefined') {
+        const storedProducts = localStorage.getItem('adminManagedProductsSIJ');
+        productsData = storedProducts ? JSON.parse(storedProducts) : products;
+    } else {
+        productsData = products;
+    }
+    return productsData.find(product => product.slug === slug);
 };
 
 export const getCategoryBySlug = (slug: string): Category | undefined => {
@@ -129,9 +143,17 @@ export const getCategoryBySlug = (slug: string): Category | undefined => {
 };
 
 export const searchProducts = (query: string): Product[] => {
+  let productsData: Product[] = [];
+  if (typeof window !== 'undefined') {
+    const storedProducts = localStorage.getItem('adminManagedProductsSIJ');
+    productsData = storedProducts ? JSON.parse(storedProducts) : products;
+  } else {
+    productsData = products;
+  }
+  
   if (!query) return [];
   const lowerCaseQuery = query.toLowerCase();
-  return products.filter(product => 
+  return productsData.filter(product => 
     product.name.toLowerCase().includes(lowerCaseQuery) ||
     product.description.toLowerCase().includes(lowerCaseQuery) ||
     product.category.toLowerCase().includes(lowerCaseQuery)

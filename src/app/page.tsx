@@ -1,12 +1,30 @@
 
 import { CategoryCard } from '@/components/products/CategoryCard';
 import { ProductCard } from '@/components/products/ProductCard';
-import { categories, products } from '@/lib/data';
+import { categories } from '@/lib/data';
+import type { Product } from '@/types';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import Image from 'next/image';
+import { promises as fs } from 'fs';
+import path from 'path';
 
-export default function HomePage() {
+async function getProducts() {
+  // This is a server component, so we can't access localStorage.
+  // We'll read from the static data file. For a real app with a DB, this would be a DB call.
+  // The 'products' export from data.ts is the canonical list for the public site.
+  // The localStorage logic in data.ts is for the client-side admin area.
+  const dataFilePath = path.join(process.cwd(), 'src/lib/data.ts');
+  // This is a simplified way to get the products array for the purpose of this example.
+  // In a real scenario, you'd fetch from a database or a proper API endpoint.
+  // For now, we will import it directly as the file is not a pure JSON.
+  const { products } = await import('@/lib/data');
+  return products;
+}
+
+
+export default async function HomePage() {
+  const products = await getProducts();
   const featuredCategories = categories.slice(0, 3); // Show first 3 categories as featured
   const newArrivals = products.slice(0, 4); // Show first 4 products as new arrivals
 
