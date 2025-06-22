@@ -33,10 +33,10 @@ export default async function HomePage() {
       {/* Hero Section */}
       <section className="relative h-[70vh] min-h-[400px] w-full overflow-hidden bg-gradient-to-r from-primary/10 via-background to-primary/5">
         <Image 
-          src="https://images.unsplash.com/photo-1617038220319-c6b16cf3a9a8?q=80&w=1964&auto=format&fit=crop"
+          src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1964&auto=format&fit=crop"
           alt="Elegant Jewellery Collection"
           fill
-          className="object-cover opacity-30"
+          className="object-cover opacity-20"
           data-ai-hint="model jewellery"
           priority
         />
