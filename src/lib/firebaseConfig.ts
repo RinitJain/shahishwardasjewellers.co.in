@@ -7,11 +7,11 @@
 // Project settings (gear icon) > General > Your apps > SDK setup and configuration
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyAJV0C2F_0HBLUaMG1aA9MlhotzL48JoYs",
-  authDomain: "lunar-inn-415209.firebaseapp.com",
-  projectId: "lunar-inn-415209",
-  storageBucket: "lunar-inn-415209.firebasestorage.app",
-  messagingSenderId: "251761578453",
-  appId: "1:251761578453:web:9c71f375ab44b76c5f6d5c",
-  measurementId: "G-20Q98TM29H"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY!,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN!,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID!,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET!,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID!,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID!,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID!,
 };

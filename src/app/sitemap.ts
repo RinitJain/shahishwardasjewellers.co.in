@@ -1,3 +1,4 @@
+export const dynamic = 'force-static';
 
 import { MetadataRoute } from 'next'
 import { categories } from '@/lib/data' // Assuming data.ts exports these
